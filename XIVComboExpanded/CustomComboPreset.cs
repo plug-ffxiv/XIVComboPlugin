@@ -126,7 +126,7 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Scathe/Xenoglossy Feature", "Scathe becomes Xenoglossy when available.", BLM.JobID)]
         BlackScatheFeature = 2507,
         
-        [CustomComboInfo("Changes Foul and Xenoglossy to Amplifier when no polyglot stacks are available.", BLM.JobID)]
+        [CustomComboInfo("Amplifier feature", "Changes Foul and Xenoglossy to Amplifier when no polyglot stacks are available.", BLM.JobID)]
         BlackAmplifierFeature = 2510,
 
         #endregion

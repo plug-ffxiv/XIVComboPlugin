@@ -131,6 +131,9 @@ namespace XIVComboExpandedPlugin
         
         [CustomComboInfo("Despair feature", "Changes Fire IV into Despair when MP is below 2400.", BLM.JobID)]
         BlackDespairFeature = 2511,
+        
+        [CustomComboInfo("Thunder feature", "Changes all Thunder spells into Sharpcast if not under the effect of Sharpcast and Sharpcast is available.", BLM.JobID)]
+        BlackDespairFeature = 2512,
 
         #endregion
         // ====================================================================================

@@ -29,6 +29,7 @@ namespace XIVComboExpandedPlugin.Combos
             Blizzard2 = 25793,
             HighFire2 = 25794,
             HighBlizzard2 = 25795,
+            Amplifier = 25796,
             Paradox = 25797;
 
         public static class Buffs

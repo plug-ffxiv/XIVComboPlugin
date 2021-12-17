@@ -311,8 +311,8 @@ namespace XIVComboExpandedPlugin.Combos
         {
             if (actionID == BLM.Thunder || actionID == BLM.Thunder2 || actionID == BLM.Thunder3 || actionID == BLM.Thunder4)
             {
-                if (!HasEffect(BLM.Buffs.Sharpcast))
-                    return CalcBestAction(BLM.Sharpcast, actionID);
+                if (!HasEffect(BLM.Buffs.Sharpcast) && !BLM.Sharpcast.Data.IsCooldown)
+                    return BLM.Sharpcast;
             }
 
             return actionID;

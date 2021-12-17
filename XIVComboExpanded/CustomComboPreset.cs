@@ -130,7 +130,7 @@ namespace XIVComboExpandedPlugin
         BlackAmplifierFeature = 2510,
         
         [CustomComboInfo("Despair feature", "Changes Fire IV into Despair when MP is below 2400.", BLM.JobID)]
-        BlackAmplifierFeature = 2510,
+        BlackAmplifierFeature = 2511,
 
         #endregion
         // ====================================================================================

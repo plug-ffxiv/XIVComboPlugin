@@ -278,4 +278,22 @@ namespace XIVComboExpandedPlugin.Combos
             return actionID;
         }
     }
+    
+    internal class BlackDespairFeature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackDespairFeature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Fire4 };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BLM.Fire4 && LocalPlayer?.CurrentMp < 2400)
+            {
+                if (level >= BLM.Levels.Despair)
+                    return BLM.Despair;
+            }
+
+            return actionID;
+        }
+    }
 }

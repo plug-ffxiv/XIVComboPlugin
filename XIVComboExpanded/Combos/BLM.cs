@@ -309,7 +309,7 @@ namespace XIVComboExpandedPlugin.Combos
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == BLM.Thunder || actionID == BLM.Thunder2 || actionID = BLM.Thunder3 || actionID = BLM.Thunder4)
+            if (actionID == BLM.Thunder || actionID == BLM.Thunder2 || actionID == BLM.Thunder3 || actionID == BLM.Thunder4)
             {
                 if (!HasEffect(BLM.Buffs.Sharpcast))
                     return CalcBestAction(BLM.Sharpcast, actionID);

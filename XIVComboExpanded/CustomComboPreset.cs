@@ -128,6 +128,9 @@ namespace XIVComboExpandedPlugin
         
         [CustomComboInfo("Amplifier feature", "Changes Foul and Xenoglossy to Amplifier when no polyglot stacks are available.", BLM.JobID)]
         BlackAmplifierFeature = 2510,
+        
+        [CustomComboInfo("Despair feature", "Changes Fire IV into Despair when MP is below 2400.", BLM.JobID)]
+        BlackAmplifierFeature = 2510,
 
         #endregion
         // ====================================================================================

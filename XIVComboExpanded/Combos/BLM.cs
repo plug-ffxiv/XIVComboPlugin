@@ -21,6 +21,7 @@ namespace XIVComboExpandedPlugin.Combos
             Freeze = 159,
             Flare = 162,
             LeyLines = 3573,
+            Sharpcast = 3574,
             Blizzard4 = 3576,
             Fire4 = 3577,
             BetweenTheLines = 7419,

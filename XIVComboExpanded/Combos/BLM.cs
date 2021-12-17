@@ -60,6 +60,7 @@ namespace XIVComboExpandedPlugin.Combos
                 Freeze = 40,
                 Thunder3 = 45,
                 Flare = 50,
+                Sharpcast = 54,
                 Blizzard4 = 58,
                 Fire4 = 60,
                 BetweenTheLines = 62,
@@ -311,7 +312,9 @@ namespace XIVComboExpandedPlugin.Combos
         {
             if (actionID == BLM.Thunder || actionID == BLM.Thunder2 || actionID == BLM.Thunder3 || actionID == BLM.Thunder4)
             {
-                if (!HasEffect(BLM.Buffs.Sharpcast) && !BLM.Sharpcast.Data.IsCooldown)
+                var cooldown = GetCooldown(BLM.Sharpcast);
+            
+                if (!HasEffect(BLM.Buffs.Sharpcast) && level >= BLM.Levels.Sharpcast && cooldown == 0)
                     return BLM.Sharpcast;
             }
 

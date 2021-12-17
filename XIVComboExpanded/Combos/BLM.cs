@@ -23,6 +23,7 @@ namespace XIVComboExpandedPlugin.Combos
             Blizzard4 = 3576,
             Fire4 = 3577,
             BetweenTheLines = 7419,
+            Foul = 7422,
             Despair = 16505,
             UmbralSoul = 16506,
             Xenoglossy = 16507,

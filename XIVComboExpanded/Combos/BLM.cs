@@ -70,6 +70,7 @@ namespace XIVComboExpandedPlugin.Combos
                 HighFire2 = 82,
                 HighBlizzard2 = 82,
                 Amplifier = 86,
+                EnhancedSharpcast2 = 88,
                 Paradox = 90;
         }
     }
@@ -313,9 +314,15 @@ namespace XIVComboExpandedPlugin.Combos
             if (actionID == BLM.Thunder || actionID == BLM.Thunder2 || actionID == BLM.Thunder3 || actionID == BLM.Thunder4)
             {
                 var cooldownData = GetCooldown(BLM.Sharpcast);
-            
-                if (!HasEffect(BLM.Buffs.Sharpcast) && level >= BLM.Levels.Sharpcast && (!cooldownData.IsCooldown || cooldownData.CooldownElapsed >= 30))
+                
+                if (!HasEffect(BLM.Buffs.Sharpcast) && !cooldownData.IsCooldown)
+                {
                     return BLM.Sharpcast;
+                }
+                if (level >= BLM.Levels.EnhancedSharpcast2 && cooldownData.CooldownElapsed >= 30)
+                {
+                    return BLM.Sharpcast;
+                }
             }
 
             return actionID;

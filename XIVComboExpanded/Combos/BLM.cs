@@ -259,7 +259,7 @@ namespace XIVComboExpandedPlugin.Combos
     
     internal class BlackAmplifierFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFreezeFlareFeature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackAmplifierFeature;
 
         protected internal override uint[] ActionIDs { get; } = new[] { BLM.Foul, BLM.Xenoglossy };
 

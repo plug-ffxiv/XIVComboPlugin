@@ -62,6 +62,7 @@ namespace XIVComboExpandedPlugin.Combos
                 Xenoglossy = 80,
                 HighFire2 = 82,
                 HighBlizzard2 = 82,
+                Amplifier = 86,
                 Paradox = 90;
         }
     }
@@ -250,6 +251,26 @@ namespace XIVComboExpandedPlugin.Combos
 
                 if (level >= BLM.Levels.Xenoglossy && gauge.PolyglotStacks > 0)
                     return BLM.Xenoglossy;
+            }
+
+            return actionID;
+        }
+    }
+    
+    internal class BlackAmplifierFeature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFreezeFlareFeature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Foul, BLM.Xenoglossy };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BLM.Foul || actionID == BLM.Xenoglossy)
+            {
+                var gauge = GetJobGauge<BLMGauge>();
+
+                if (level >= BLM.Levels.Amplifier && gauge.PolyglotStacks == 0)
+                    return BLM.Amplifier;
             }
 
             return actionID;

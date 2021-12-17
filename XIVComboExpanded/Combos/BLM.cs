@@ -12,6 +12,7 @@ namespace XIVComboExpandedPlugin.Combos
             Blizzard = 142,
             Thunder = 144,
             Fire2 = 147,
+            Thunder2 = 148,
             Transpose = 149,
             Fire3 = 152,
             Thunder3 = 153,
@@ -23,6 +24,7 @@ namespace XIVComboExpandedPlugin.Combos
             Blizzard4 = 3576,
             Fire4 = 3577,
             BetweenTheLines = 7419,
+            Thunder4 = 7420,
             Foul = 7422,
             Despair = 16505,
             UmbralSoul = 16506,
@@ -38,7 +40,8 @@ namespace XIVComboExpandedPlugin.Combos
             public const ushort
                 Thundercloud = 164,
                 LeyLines = 737,
-                Firestarter = 165;
+                Firestarter = 165,
+                Sharpcast = 867;
         }
 
         public static class Debuffs
@@ -291,6 +294,24 @@ namespace XIVComboExpandedPlugin.Combos
             {
                 if (level >= BLM.Levels.Despair)
                     return BLM.Despair;
+            }
+
+            return actionID;
+        }
+    }
+    
+    internal class BlackThunderFeature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackThunderFeature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Thunder, BLM.Thunder2, BLM.Thunder3, BLM.Thunder4 };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BLM.Thunder || actionID == BLM.Thunder2 || actionID = BLM.Thunder3 || actionID = BLM.Thunder4)
+            {
+                if (!HasEffect(BLM.Buffs.Sharpcast))
+                    return CalcBestAction(BLM.Sharpcast, actionID);
             }
 
             return actionID;

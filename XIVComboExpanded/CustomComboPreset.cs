@@ -99,38 +99,29 @@ namespace XIVComboExpandedPlugin
         // ====================================================================================
         #region BLACK MAGE
 
-        [CustomComboInfo("Enochian Feature", "Change Fire 4 or Blizzard 4 to whichever action you can currently use.", BLM.JobID)]
-        BlackEnochianFeature = 2501,
-
         [CustomComboInfo("Umbral Soul/Transpose Switcher", "Change Transpose into Umbral Soul when Umbral Soul is usable.", BLM.JobID)]
         BlackManaFeature = 2502,
 
         [CustomComboInfo("(Between the) Ley Lines", "Change Ley Lines into BTL when Ley Lines is active.", BLM.JobID)]
         BlackLeyLinesFeature = 2503,
 
-        [CustomComboInfo("Fire 1/3 Feature", "Fire 1 becomes Fire 3 outside of Astral Fire, and when Firestarter proc is up.", BLM.JobID)]
+        [CustomComboInfo("Fire 1 Feature", "Replace Fire I with Transpose when Firestarter is active in Umbral Ice at level 90, or Fire III when Firestarter is active in Umbral Ice or outside of Astral Fire.", BLM.JobID)]
         BlackFireFeature = 2504,
 
         [CustomComboInfo("Blizzard 1/3 Feature", "Blizzard 1 becomes Blizzard 3 when out of Umbral Ice.", BLM.JobID)]
         BlackBlizzardFeature = 2505,
 
-        [CustomComboInfo("Freeze/Flare Feature", "Freeze and Flare become whichever action you can currently use.", BLM.JobID)]
-        BlackFreezeFlareFeature = 2506,
-
-        [CustomComboInfo("Fire 2 Feature", "(High) Fire 2 becomes Flare in Astral Fire with 1 or fewer Umbral Hearts.", BLM.JobID)]
+        [CustomComboInfo("Fire 2 Feature", "(High) Fire 2 becomes Flare in Astral Fire with 1 or fewer Umbral Hearts, or Manafont if MP is under 800.", BLM.JobID)]
         BlackFire2Feature = 2508,
 
         [CustomComboInfo("Ice 2 Feature", "(High) Blizzard 2 becomes Freeze in Umbral Ice.", BLM.JobID)]
         BlackBlizzard2Feature = 2509,
-
-        [CustomComboInfo("Scathe/Xenoglossy Feature", "Scathe becomes Xenoglossy when available.", BLM.JobID)]
-        BlackScatheFeature = 2507,
         
         [CustomComboInfo("Amplifier feature", "Changes Foul and Xenoglossy to Amplifier when no polyglot stacks are available.", BLM.JobID)]
         BlackAmplifierFeature = 2510,
         
-        [CustomComboInfo("Despair feature", "Changes Fire IV into Despair when MP is below 2400.", BLM.JobID)]
-        BlackDespairFeature = 2511,
+        [CustomComboInfo("Fire 4 feature", "Changes Fire IV into Despair when MP is below 2400, or Manafont if MP is under 800.", BLM.JobID)]
+        BlackFire4Feature = 2511,
         
         [CustomComboInfo("Thunder feature", "Changes all Thunder spells into Sharpcast if not under the effect of Sharpcast and Sharpcast is available.", BLM.JobID)]
         BlackThunderFeature = 2512,

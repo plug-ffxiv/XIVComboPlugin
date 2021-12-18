@@ -178,7 +178,7 @@ namespace XIVComboExpandedPlugin.Combos
                 if (gauge.InAstralFire)
                 {
                     if (level >= BLM.Levels.Flare && LocalPlayer?.CurrentMp < 800)
-                        return BLM.Manafont
+                        return BLM.Manafont;
 
                     if (level >= BLM.Levels.Flare && gauge.InAstralFire && gauge.UmbralHearts <= 1)
                         return BLM.Flare;

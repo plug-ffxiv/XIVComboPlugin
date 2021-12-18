@@ -18,6 +18,7 @@ namespace XIVComboExpandedPlugin.Combos
             Thunder3 = 153,
             Blizzard3 = 154,
             Scathe = 156,
+            Manafont = 158,
             Freeze = 159,
             Flare = 162,
             LeyLines = 3573,
@@ -75,29 +76,6 @@ namespace XIVComboExpandedPlugin.Combos
         }
     }
 
-    internal class BlackEnochianFeature : CustomCombo
-    {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackEnochianFeature;
-
-        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Fire4, BLM.Blizzard4 };
-
-        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-        {
-            if (actionID == BLM.Fire4 || actionID == BLM.Blizzard4)
-            {
-                var gauge = GetJobGauge<BLMGauge>();
-
-                if (level >= BLM.Levels.Blizzard4 && gauge.InUmbralIce)
-                    return BLM.Blizzard4;
-
-                if (level >= BLM.Levels.Fire4 && gauge.InAstralFire)
-                    return BLM.Fire4;
-            }
-
-            return actionID;
-        }
-    }
-
     internal class BlackManaFeature : CustomCombo
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackManaFeature;
@@ -147,7 +125,10 @@ namespace XIVComboExpandedPlugin.Combos
             if (actionID == BLM.Fire)
             {
                 var gauge = GetJobGauge<BLMGauge>();
-
+                
+                if (level >= BLM.Levels.Paradox && gauge.InUmbralIce && HasEffect(BLM.Buffs.Firestarter))
+                    return BLM.Transpose;
+                    
                 if (level >= BLM.Levels.Fire3 && (!gauge.InAstralFire || HasEffect(BLM.Buffs.Firestarter)))
                     return BLM.Fire3;
 
@@ -182,29 +163,6 @@ namespace XIVComboExpandedPlugin.Combos
         }
     }
 
-    internal class BlackFreezeFlareFeature : CustomCombo
-    {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFreezeFlareFeature;
-
-        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Freeze, BLM.Flare };
-
-        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-        {
-            if (actionID == BLM.Freeze || actionID == BLM.Flare)
-            {
-                var gauge = GetJobGauge<BLMGauge>();
-
-                if (level >= BLM.Levels.Freeze && gauge.InUmbralIce)
-                    return BLM.Freeze;
-
-                if (level >= BLM.Levels.Flare && gauge.InAstralFire)
-                    return BLM.Flare;
-            }
-
-            return actionID;
-        }
-    }
-
     internal class BlackFire2Feature : CustomCombo
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFire2Feature;
@@ -216,9 +174,15 @@ namespace XIVComboExpandedPlugin.Combos
             if (actionID == BLM.Fire2 || actionID == BLM.HighFire2)
             {
                 var gauge = GetJobGauge<BLMGauge>();
+                
+                if (gauge.InAstralFire)
+                {
+                    if (level >= BLM.Levels.Flare && LocalPlayer?.CurrentMp < 800)
+                        return BLM.Manafont
 
-                if (level >= BLM.Levels.Flare && gauge.InAstralFire && gauge.UmbralHearts <= 1)
-                    return BLM.Flare;
+                    if (level >= BLM.Levels.Flare && gauge.InAstralFire && gauge.UmbralHearts <= 1)
+                        return BLM.Flare;
+                }
             }
 
             return actionID;
@@ -239,26 +203,6 @@ namespace XIVComboExpandedPlugin.Combos
 
                 if (level >= BLM.Levels.Freeze && gauge.InUmbralIce)
                     return BLM.Freeze;
-            }
-
-            return actionID;
-        }
-    }
-
-    internal class BlackScatheFeature : CustomCombo
-    {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackScatheFeature;
-
-        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Scathe };
-
-        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-        {
-            if (actionID == BLM.Scathe)
-            {
-                var gauge = GetJobGauge<BLMGauge>();
-
-                if (level >= BLM.Levels.Xenoglossy && gauge.PolyglotStacks > 0)
-                    return BLM.Xenoglossy;
             }
 
             return actionID;
@@ -285,17 +229,20 @@ namespace XIVComboExpandedPlugin.Combos
         }
     }
     
-    internal class BlackDespairFeature : CustomCombo
+    internal class BlackFire4Feature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackDespairFeature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFire4Feature;
 
         protected internal override uint[] ActionIDs { get; } = new[] { BLM.Fire4 };
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == BLM.Fire4 && LocalPlayer?.CurrentMp < 2400)
+            if (actionID == BLM.Fire4)
             {
-                if (level >= BLM.Levels.Despair)
+                if (LocalPlayer?.CurrentMp < 800)
+                    return BLM.Manafont;
+                    
+                if (level >= BLM.Levels.Despair && LocalPlayer?.CurrentMp < 2400)
                     return BLM.Despair;
             }
 

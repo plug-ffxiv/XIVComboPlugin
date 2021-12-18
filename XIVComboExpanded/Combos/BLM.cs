@@ -266,10 +266,6 @@ namespace XIVComboExpandedPlugin.Combos
                 {
                     return BLM.Sharpcast;
                 }
-                if (level >= BLM.Levels.EnhancedSharpcast2 && cooldownData.CooldownElapsed >= 30)
-                {
-                    return BLM.Sharpcast;
-                }
             }
 
             return actionID;

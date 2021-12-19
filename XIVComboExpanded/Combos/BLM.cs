@@ -376,6 +376,8 @@ namespace XIVComboExpandedPlugin.Combos
             
                 return BLM.HighBlizzard2;
             }
+            
+            return actionID;
         }
     }
 }

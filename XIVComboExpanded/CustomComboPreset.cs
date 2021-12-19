@@ -129,7 +129,6 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Blizzard 3 one button rotation", "97% of the damage you know and love, now wrapped in just one convenient button.", BLM.JobID)]
         BlackBlizzard3Feature = 2513,
 
-
         #endregion
         // ====================================================================================
         #region BARD

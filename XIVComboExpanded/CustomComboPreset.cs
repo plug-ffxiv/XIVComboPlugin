@@ -127,7 +127,7 @@ namespace XIVComboExpandedPlugin
         BlackThunderFeature = 2512,
         
         [CustomComboInfo("Blizzard 3 one button rotation", "97% of the damage you know and love, now wrapped in just one convenient button.", BLM.JobID)]
-        BlackFire4Feature = 2513,
+        BlackBlizzard3Feature = 2513,
 
 
         #endregion

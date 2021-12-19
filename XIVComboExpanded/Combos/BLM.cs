@@ -276,7 +276,7 @@ namespace XIVComboExpandedPlugin.Combos
         }
     }
     
-        internal class BlackBlizzard3Feature : CustomCombo
+    internal class BlackBlizzard3Feature : CustomCombo
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackBlizzard3Feature;
 
@@ -319,6 +319,63 @@ namespace XIVComboExpandedPlugin.Combos
             }
 
             return actionID;
+        }
+    }
+    
+    internal class BlackFlareFeature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFlareFeature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Flare };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BLM.Flare)
+            {
+                var gauge = GetJobGauge<BLMGauge>();
+                
+                var ampCooldown = GetCooldown(BLM.Amplifier);
+                
+                var manafontCooldown = GetCooldown(BLM.Manafont);
+                
+                if (gauge.InUmbralIce)
+                {
+                    if (!HasEffect(BLM.Buffs.Sharpcast))
+                        return BLM.Sharpcast;
+                    
+                    if (gauge.UmbralHearts < 3)
+                        return BLM.Freeze;
+                        
+                    if (lastComboMove == BLM.Freeze)
+                        return BLM.Thunder4;
+                        
+                    return BLM.HighFire2;
+                }
+                
+                if (gauge.InAstralFire)
+                {
+                    if (gauge.PolyglotStacks == 2)
+                        return BLM.Foul;
+                        
+                    if (!ampCooldown.IsCooldown)
+                        return BLM.Amplifier;
+                    
+                    if (LocalPlayer?.CurrentMp < 800)
+                    {
+                        if (!manafontCooldown.IsCooldown)
+                            return BLM.Manafont;
+                            
+                        return BLM.HighBlizzard2;
+                    }
+                    
+                    if (gauge.UmbralHearts > 1)
+                        return BLM.HighFire2;
+                    
+                    return BLM.Flare;
+                }
+            
+                return BLM.HighBlizzard2;
+            }
         }
     }
 }

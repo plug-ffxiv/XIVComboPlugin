@@ -288,6 +288,11 @@ namespace XIVComboExpandedPlugin.Combos
             {
                 var gauge = GetJobGauge<BLMGauge>();
                 
+                var thundercloud = FindEffect(BLM.Buffs.Thundercloud);
+                
+                if (thundercloud.RemainingTime <= 12 && HasEffect(BLM.Buffs.Sharpcast))
+                    return BLM.Thunder3;
+                
                 if (gauge.InUmbralIce)
                 {
                     if (!HasEffect(BLM.Buffs.Sharpcast))
@@ -309,10 +314,7 @@ namespace XIVComboExpandedPlugin.Combos
                 }
                 
                 if (gauge.InAstralFire)
-                {
-                    if (!TargetHasEffect(BLM.Debuffs.Thunder3))
-                        return BLM.Thunder3;
-                
+                {                
                     if (gauge.IsParadoxActive)
                         return OriginalHook(BLM.Fire);
                         

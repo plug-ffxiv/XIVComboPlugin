@@ -338,16 +338,18 @@ namespace XIVComboExpandedPlugin.Combos
                 
                 var manafontCooldown = GetCooldown(BLM.Manafont);
                 
+                var sharpCooldown = GetCooldown(BLM.Sharpcast);
+                
                 if (gauge.InUmbralIce)
                 {
-                    if (lastComboMove == BLM.HighBlizzard2 && !HasEffect(BLM.Buffs.Sharpcast))
+                    if (lastComboMove == BLM.HighBlizzard2 && !HasEffect(BLM.Buffs.Sharpcast) && !sharpCooldown.IsCooldown)
                         return BLM.Sharpcast;
+                        
+                    if (HasEffect(BLM.Buffs.Sharpcast))
+                        return BLM.Thunder4;
                     
                     if (gauge.UmbralHearts < 3)
                         return BLM.Freeze;
-                        
-                    if (lastComboMove == BLM.Freeze)
-                        return BLM.Thunder4;
                         
                     return BLM.HighFire2;
                 }

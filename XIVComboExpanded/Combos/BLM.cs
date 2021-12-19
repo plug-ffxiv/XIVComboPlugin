@@ -296,6 +296,9 @@ namespace XIVComboExpandedPlugin.Combos
                     if (gauge.IsParadoxActive)
                         return OriginalHook(BLM.Blizzard);
                         
+                    if (gauge.PolyglotStacks == 2)
+                        return BLM.Xenoglossy;
+                        
                     if (LocalPlayer?.CurrentMp >= 2400)    
                         return BLM.Transpose;
                         

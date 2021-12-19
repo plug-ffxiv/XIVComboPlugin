@@ -290,6 +290,9 @@ namespace XIVComboExpandedPlugin.Combos
                 
                 if (gauge.InUmbralIce)
                 {
+                    if (!HasEffect(BLM.Buffs.Sharpcast))
+                        return BLM.Sharpcast;
+                    
                     if (gauge.UmbralHearts != 3)
                         return BLM.Blizzard4;
                         
@@ -299,11 +302,17 @@ namespace XIVComboExpandedPlugin.Combos
                     if (LocalPlayer?.CurrentMp >= 2400)    
                         return BLM.Transpose;
                         
-                    return OriginalHook(BLM.Xenoglossy);
+                    if (gauge.PolyglotStacks == 0)
+                        return BLM.Amplifier;
+                    
+                    return BLM.Xenoglossy;
                 }
                 
                 if (gauge.InAstralFire)
                 {
+                    if (!TargetHasEffect(BLM.Debuffs.Thunder3))
+                        return BLM.Thunder3;
+                
                     if (gauge.IsParadoxActive)
                         return OriginalHook(BLM.Fire);
                         

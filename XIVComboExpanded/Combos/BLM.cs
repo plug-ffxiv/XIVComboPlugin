@@ -80,16 +80,16 @@ namespace XIVComboExpandedPlugin.Combos
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackManaFeature;
 
-        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Transpose };
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.UmbralSoul };
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == BLM.Transpose)
+            if (actionID == BLM.UmbralSoul)
             {
                 var gauge = GetJobGauge<BLMGauge>();
 
-                if (level >= BLM.Levels.UmbralSoul && gauge.IsEnochianActive && gauge.InUmbralIce)
-                    return BLM.UmbralSoul;
+                if (gauge.InAstralFire || level < BLM.Levels.UmbralSoul)
+                    return BLM.Transpose;
             }
 
             return actionID;

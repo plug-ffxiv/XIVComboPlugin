@@ -295,7 +295,9 @@ namespace XIVComboExpandedPlugin.Combos
                 
                 if (gauge.InUmbralIce)
                 {
-                    if (!HasEffect(BLM.Buffs.Sharpcast))
+                    var cooldownData = GetCooldown(BLM.Sharpcast);
+                
+                    if (!HasEffect(BLM.Buffs.Sharpcast) && (cooldownData.CooldownElapsed >= 30 || !cooldownData.IsCooldown))
                         return BLM.Sharpcast;
                     
                     if (gauge.UmbralHearts != 3)

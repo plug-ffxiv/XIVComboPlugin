@@ -340,7 +340,7 @@ namespace XIVComboExpandedPlugin.Combos
                 
                 if (gauge.InUmbralIce)
                 {
-                    if (!HasEffect(BLM.Buffs.Sharpcast))
+                    if (lastComboMove == BLM.HighBlizzard2 && !HasEffect(BLM.Buffs.Sharpcast))
                         return BLM.Sharpcast;
                     
                     if (gauge.UmbralHearts < 3)

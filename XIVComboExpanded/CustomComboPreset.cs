@@ -126,8 +126,11 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Thunder feature", "Changes all Thunder spells into Sharpcast if not under the effect of Sharpcast and Sharpcast is available.", BLM.JobID)]
         BlackThunderFeature = 2512,
         
-        [CustomComboInfo("Blizzard 3 one button rotation", "97% of the damage you know and love, now wrapped in just one convenient button.", BLM.JobID)]
+        [CustomComboInfo("Blizzard 3 one button rotation", "95 percent of the damage you know and love, now wrapped in just one convenient button: just add Thunder!.", BLM.JobID)]
         BlackBlizzard3Feature = 2513,
+        
+        [CustomComboInfo("Flare one button rotation", "100 percent of the damage you know and love, now wrapped in just one convenient button.", BLM.JobID)]
+        BlackFlareFeature = 2514,
 
         #endregion
         // ====================================================================================

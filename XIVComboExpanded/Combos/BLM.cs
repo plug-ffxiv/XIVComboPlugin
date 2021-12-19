@@ -305,9 +305,8 @@ namespace XIVComboExpandedPlugin.Combos
                         return OriginalHook(BLM.Fire);
                         
                     if (LocalPlayer?.CurrentMp >= 800)
-                        return Despair;
-                }
-                
+                        return BLM.Despair;
+                }  
             }
 
             return actionID;

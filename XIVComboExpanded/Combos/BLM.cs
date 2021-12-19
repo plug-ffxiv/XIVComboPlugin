@@ -294,7 +294,7 @@ namespace XIVComboExpandedPlugin.Combos
                         return BLM.Blizzard4;
                         
                     if (gauge.IsParadoxActive)
-                        return OriginalHook(BLM.Blizzard1);
+                        return OriginalHook(BLM.Blizzard);
                         
                     return BLM.Transpose;
                 }
@@ -302,7 +302,7 @@ namespace XIVComboExpandedPlugin.Combos
                 if (gauge.InAstralFire)
                 {
                     if (gauge.IsParadoxActive)
-                        return OriginalHook(BLM.Fire1);
+                        return OriginalHook(BLM.Fire);
                         
                     if (LocalPlayer?.CurrentMp >= 800)
                         return Despair;

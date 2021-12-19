@@ -288,18 +288,8 @@ namespace XIVComboExpandedPlugin.Combos
             {
                 var gauge = GetJobGauge<BLMGauge>();
                 
-                var thundercloud = FindEffect(BLM.Buffs.Thundercloud);
-                
-                var cooldownData = GetCooldown(BLM.Sharpcast);
-                
-                if (thundercloud?.RemainingTime <= 12 && HasEffect(BLM.Buffs.Sharpcast))
-                    return BLM.Thunder3;
-                
                 if (gauge.InUmbralIce)
                 {                
-                    if (!HasEffect(BLM.Buffs.Sharpcast) && (cooldownData.CooldownElapsed >= 30 || !cooldownData.IsCooldown))
-                        return BLM.Sharpcast;
-                    
                     if (gauge.UmbralHearts != 3)
                         return BLM.Blizzard4;
                         

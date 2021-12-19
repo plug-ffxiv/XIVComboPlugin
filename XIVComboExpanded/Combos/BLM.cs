@@ -342,7 +342,7 @@ namespace XIVComboExpandedPlugin.Combos
                 
                 if (gauge.InUmbralIce)
                 {
-                    if (lastComboMove == BLM.HighBlizzard2 && !HasEffect(BLM.Buffs.Sharpcast) && !sharpCooldown.IsCooldown)
+                    if (lastComboMove == BLM.HighBlizzard2 && !HasEffect(BLM.Buffs.Sharpcast) && (!sharpCooldown.IsCooldown || sharpCooldown.CooldownElapsed >= 30))
                         return BLM.Sharpcast;
                         
                     if (HasEffect(BLM.Buffs.Sharpcast))

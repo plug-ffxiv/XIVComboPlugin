@@ -260,7 +260,7 @@ namespace XIVComboExpandedPlugin.Combos
         {
             if (actionID == BLM.Thunder || actionID == BLM.Thunder2 || actionID == BLM.Thunder3 || actionID == BLM.Thunder4)
             {
-                if (!HasEffect(BLM.Buffs.Sharpcast))
+                if (!HasEffect(BLM.Buffs.Sharpcast) && level >= BLM.Levels.Sharpcast)
                 {
                     var cooldownData = GetCooldown(BLM.Sharpcast);
 
@@ -270,6 +270,44 @@ namespace XIVComboExpandedPlugin.Combos
                     if (level >= BLM.Levels.EnhancedSharpcast2 && cooldownData.CooldownElapsed >= 30)
                         return BLM.Sharpcast;
                 }
+            }
+
+            return actionID;
+        }
+    }
+    
+        internal class BlackBlizzard3Feature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackBlizzard3Feature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Blizzard3 };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BLM.Blizzard3 && level >= BLM.Levels.Paradox)
+            {
+                var gauge = GetJobGauge<BLMGauge>();
+                
+                if (gauge.InUmbralIce)
+                {
+                    if (gauge.UmbralHearts != 3)
+                        return BLM.Blizzard4;
+                        
+                    if (gauge.IsParadoxActive)
+                        return OriginalHook(BLM.Blizzard1);
+                        
+                    return BLM.Transpose;
+                }
+                
+                if (gauge.InAstralFire)
+                {
+                    if (gauge.IsParadoxActive)
+                        return OriginalHook(BLM.Fire1);
+                        
+                    if (LocalPlayer?.CurrentMp >= 800)
+                        return Despair;
+                }
+                
             }
 
             return actionID;

@@ -296,7 +296,10 @@ namespace XIVComboExpandedPlugin.Combos
                     if (gauge.IsParadoxActive)
                         return OriginalHook(BLM.Blizzard);
                         
-                    return BLM.Transpose;
+                    if (LocalPlayer?.CurrentMp >= 2400)    
+                        return BLM.Transpose;
+                        
+                    return OriginalHook(BLM.Xenoglossy);
                 }
                 
                 if (gauge.InAstralFire)

@@ -292,7 +292,7 @@ namespace XIVComboExpandedPlugin.Combos
                 
                 var cooldownData = GetCooldown(BLM.Sharpcast);
                 
-                if (thundercloud.RemainingTime <= 12 && HasEffect(BLM.Buffs.Sharpcast))
+                if (thundercloud?.RemainingTime <= 12 && HasEffect(BLM.Buffs.Sharpcast))
                     return BLM.Thunder3;
                 
                 if (gauge.InUmbralIce)

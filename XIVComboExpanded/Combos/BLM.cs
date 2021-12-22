@@ -313,6 +313,9 @@ namespace XIVComboExpandedPlugin.Combos
                     if (gauge.IsParadoxActive)
                         return OriginalHook(BLM.Fire);
                         
+                    if (HasEffect(BLM.Buffs.Firestarter))
+                        return BLM.Fire3;
+                        
                     if (LocalPlayer?.CurrentMp >= 800)
                         return BLM.Despair;
                 }  

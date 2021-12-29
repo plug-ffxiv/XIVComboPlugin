@@ -11,6 +11,7 @@ namespace XIVComboExpandedPlugin.Combos
             Benefic = 3594,
             Benefic2 = 3610,
             Draw = 3590,
+            Redraw = 3593,
             Balance = 4401,
             Bole = 4404,
             Arrow = 4402,
@@ -27,6 +28,7 @@ namespace XIVComboExpandedPlugin.Combos
             public const ushort
                 LordOfCrownsDrawn = 2054,
                 LadyOfCrownsDrawn = 2055;
+                ClarifyingDraw = 2713;
         }
 
         public static class Debuffs
@@ -68,6 +70,18 @@ namespace XIVComboExpandedPlugin.Combos
                 {
                     if (level >= AST.Levels.Draw && gauge.DrawnCard == CardType.NONE)
                         return AST.Draw;
+                        
+                    if (HasEffect(AST.Buffs.ClarifyingDraw))
+                    {
+                        if (gauge.ContainsSeal(SealType.SUN) && (gauge.DrawnCard == CardType.BALANCE || gauge.DrawnCard == CardType.BOLE))
+                            return AST.Redraw;
+                            
+                        if (gauge.ContainsSeal(SealType.MOON) && (gauge.DrawnCard == CardType.ARROW || gauge.DrawnCard == CardType.EWER))
+                            return AST.Redraw;
+                        
+                        if (gauge.ContainsSeal(SealType.CELESTIAL) && (gauge.DrawnCard == CardType.SPEAR || gauge.DrawnCard == CardType.SPIRE))
+                            return AST.Redraw;
+                    }
                 }
             }
 

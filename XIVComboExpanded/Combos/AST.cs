@@ -27,7 +27,7 @@ namespace XIVComboExpandedPlugin.Combos
         {
             public const ushort
                 LordOfCrownsDrawn = 2054,
-                LadyOfCrownsDrawn = 2055;
+                LadyOfCrownsDrawn = 2055,
                 ClarifyingDraw = 2713;
         }
 

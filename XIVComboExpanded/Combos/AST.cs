@@ -63,7 +63,7 @@ namespace XIVComboExpandedPlugin.Combos
 
                 if (IsEnabled(CustomComboPreset.AstrologianAstrodynePlayFeature))
                 {
-                    if (level >= AST.Levels.Astrodyne && !gauge.ContainsSeal(SealType.NONE) && (cooldownData.IsCooldown || !(gauge.DrawnCard == CardType.NONE))
+                    if (level >= AST.Levels.Astrodyne && !gauge.ContainsSeal(SealType.NONE) && (cooldownData.IsCooldown || !(gauge.DrawnCard == CardType.NONE)))
                         return AST.Astrodyne;
                 }
 

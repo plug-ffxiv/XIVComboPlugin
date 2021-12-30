@@ -71,18 +71,6 @@ namespace XIVComboExpandedPlugin.Combos
                 {
                     if (level >= AST.Levels.Draw && gauge.DrawnCard == CardType.NONE)
                         return AST.Draw;
-                        
-                    if (HasEffect(AST.Buffs.ClarifyingDraw))
-                    {
-                        if (gauge.ContainsSeal(SealType.SUN) && (gauge.DrawnCard == CardType.BALANCE || gauge.DrawnCard == CardType.BOLE))
-                            return AST.Redraw;
-                            
-                        if (gauge.ContainsSeal(SealType.MOON) && (gauge.DrawnCard == CardType.ARROW || gauge.DrawnCard == CardType.EWER))
-                            return AST.Redraw;
-                        
-                        if (gauge.ContainsSeal(SealType.CELESTIAL) && (gauge.DrawnCard == CardType.SPEAR || gauge.DrawnCard == CardType.SPIRE))
-                            return AST.Redraw;
-                    }
                 }
             }
 

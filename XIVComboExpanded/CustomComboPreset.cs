@@ -157,8 +157,11 @@ namespace XIVComboExpandedPlugin
         // [CustomComboInfo("Rain of Death Feature", "Replaces Rain of Death with Empyreal Arrow and Sidewinder depending on which is available.", BRD.JobID)]
         // BardRainOfDeathFeature = 2307,
         
-        [CustomComboInfo("Battle Voice into Radiant Finale", "Replaces Battle Voice with Radiant Finale when both are up", BRD.JobID)]
+        [CustomComboInfo("Battle Voice into Radiant Finale", "Replaces Battle Voice with Radiant Finale when both are available", BRD.JobID)]
         BardRadiantBattleVoiceFeature = 2308,
+        
+        [CustomComboInfo("Raging Strikes into Barrage", "Replaces Raging Strikes with Barrage when Raging Strikes is on cooldown", BRD.JobID)]
+        BardRagingBarrageFeature = 2309,
 
         #endregion
         // ====================================================================================

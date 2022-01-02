@@ -16,6 +16,7 @@ namespace XIVComboExpandedPlugin.Combos
             Bloodletter = 110,
             Windbite = 113,
             RainOfDeath = 117,
+            BattleVoice = 118,
             EmpyrealArrow = 3558,
             WanderersMinuet = 3559,
             IronJaws = 3560,
@@ -28,7 +29,8 @@ namespace XIVComboExpandedPlugin.Combos
             ApexArrow = 16496,
             Shadowbite = 16494,
             Ladonsbite = 25783,
-            BlastArrow = 25784;
+            BlastArrow = 25784,
+            RadiantFinale = 25785;
 
         public static class Buffs
         {
@@ -65,7 +67,8 @@ namespace XIVComboExpandedPlugin.Combos
                 BurstShot = 76,
                 ApexArrow = 80,
                 Ladonsbite = 82,
-                BlastShot = 86;
+                BlastShot = 86,
+                RadiantFinale = 90;
         }
     }
 
@@ -83,6 +86,28 @@ namespace XIVComboExpandedPlugin.Combos
 
                 if (level >= BRD.Levels.PitchPerfect && gauge.Song == Song.WANDERER)
                     return BRD.PitchPerfect;
+            }
+
+            return actionID;
+        }
+    }
+    
+    internal class BardRadiantBattleVoiceFeature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardRadiantBattleVoiceFeature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BRD.BattleVoice };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BRD.BattleVoice)
+            {
+                var bvCooldown = GetCooldown(BRD.BattleVoice);
+                
+                var rfCooldown = GetCooldown(BRD.RadiantFinale);
+
+                if (level >= BRD.Levels.RadiantFinale && !bvCooldown.IsCooldown && !rfCooldown.IsCooldown)
+                    return BRD.RadiantFinale;
             }
 
             return actionID;

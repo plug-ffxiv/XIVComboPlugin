@@ -58,6 +58,7 @@ namespace XIVComboExpandedPlugin.Combos
                 VenomousBite = 6,
                 Bloodletter = 12,
                 Windbite = 30,
+                Barrage = 38,
                 RainOfDeath = 45,
                 PitchPerfect = 52,
                 EmpyrealArrow = 54,

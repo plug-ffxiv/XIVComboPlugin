@@ -12,7 +12,9 @@ namespace XIVComboExpandedPlugin.Combos
             HeavyShot = 97,
             StraightShot = 98,
             VenomousBite = 100,
+            RagingStrikes = 101,
             QuickNock = 106,
+            Barrage = 107,
             Bloodletter = 110,
             Windbite = 113,
             RainOfDeath = 117,
@@ -108,6 +110,28 @@ namespace XIVComboExpandedPlugin.Combos
 
                 if (level >= BRD.Levels.RadiantFinale && !bvCooldown.IsCooldown && !rfCooldown.IsCooldown)
                     return BRD.RadiantFinale;
+            }
+
+            return actionID;
+        }
+    }
+    
+    internal class BardRagingBarrageFeature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardRagingBarrageFeature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BRD.RagingStrikes };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BRD.RagingStrikes)
+            {
+                var rsCooldown = GetCooldown(BRD.RagingStrikes);
+                
+                var barrageCooldown = GetCooldown(BRD.Barrage);
+
+                if (level >= BRD.Levels.Barrage && rsCooldown.IsCooldown && !barrageCooldown.IsCooldown)
+                    return BRD.Barrage;
             }
 
             return actionID;

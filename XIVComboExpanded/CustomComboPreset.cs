@@ -162,6 +162,9 @@ namespace XIVComboExpandedPlugin
         
         [CustomComboInfo("Raging Strikes into Barrage", "Replaces Raging Strikes with Barrage when Raging Strikes is on cooldown", BRD.JobID)]
         BardRagingBarrageFeature = 2309,
+        
+        [CustomComboInfo("Sidewinder into Empyreal Arrow", "Replaces Sidewinder with Empyreal Arrow if available", BRD.JobID)]
+        BardEmpyrealSidewinderFeature = 2310,
 
         #endregion
         // ====================================================================================

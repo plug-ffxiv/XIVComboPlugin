@@ -117,6 +117,33 @@ namespace XIVComboExpandedPlugin.Combos
         }
     }
     
+    internal class BardEmpyrealSidewinderFeature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardEmpyrealSidewinderFeature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BRD.Sidewinder };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BRD.Sidewinder)
+            {
+                var eaCooldown = GetCooldown(BRD.EmpyrealArrow);
+                
+                var swCooldown = GetCooldown(BRD.Sidewinder);
+
+                if (level < BRD.Levels.Sidewinder)
+                    return BRD.EmpyrealArrow;
+                    
+                if (eaCooldown.IsCooldown && !swCooldown.IsCooldown)
+                    return BRD.Sidewinder;
+                    
+                return BRD.EmpyrealArrow;
+            }
+
+            return actionID;
+        }
+    }
+    
     internal class BardRagingBarrageFeature : CustomCombo
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardRagingBarrageFeature;

@@ -136,6 +136,8 @@ namespace XIVComboExpandedPlugin.Combos
                         
                     if (HasEffect(BLM.Buffs.Firestarter) && lastComboMove == BLM.Paradox)
                         return BLM.Transpose;
+                        
+                    return BLM.Fire3;
                 }
                 
                 if (gauge.InAstralFire)

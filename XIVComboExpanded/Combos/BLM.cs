@@ -304,7 +304,7 @@ namespace XIVComboExpandedPlugin.Combos
         {
             if (actionID == BLM.Thunder || actionID == BLM.Thunder2 || actionID == BLM.Thunder3 || actionID == BLM.Thunder4)
             {
-                if (!HasEffect(BLM.Buffs.Sharpcast) && level >= BLM.Levels.Sharpcast)
+                if (!HasEffect(BLM.Buffs.Sharpcast) && !(lastComboMove == BLM.Thunder3 || BLM.Thunder4) && level >= BLM.Levels.Sharpcast)
                 {
                     var cooldownData = GetCooldown(BLM.Sharpcast);
 

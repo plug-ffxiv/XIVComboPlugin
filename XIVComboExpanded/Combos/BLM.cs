@@ -126,14 +126,36 @@ namespace XIVComboExpandedPlugin.Combos
             {
                 var gauge = GetJobGauge<BLMGauge>();
                 
-                if (level >= BLM.Levels.Paradox && gauge.InUmbralIce && HasEffect(BLM.Buffs.Firestarter))
-                    return BLM.Transpose;
-                    
-                if (level >= BLM.Levels.Fire3 && (!gauge.InAstralFire || HasEffect(BLM.Buffs.Firestarter)))
-                    return BLM.Fire3;
-
-                // Paradox
-                return OriginalHook(BLM.Fire);
+                if (gauge.InUmbralceIce)
+                {
+                    if (gauge.UmbralHearts == 0)
+                        return BLM.Blizzard4;
+                        
+                    if (gauge.IsParadoxActive)
+                        return OriginalHook(BLM.Blizzard);
+                        
+                    if (HasEffect(BLM.Buffs.Firestarter) && lastComboMove == BLM.Paradox)
+                        return BLM.Transpose;
+                }
+                
+                if (gauge.InAstralFire)
+                {
+                    if (gauge.AstralFireStacks < 3 && HasEffect(BLM.Buffs.Firestarter))
+                        return BLM.Fire3;
+                        
+                    if (LocalPlayer?.CurrentMp < 800)
+                        return BLM.Blizzard3;
+                        
+                    if (LocalPlayer?.CurrentMp < 2400)
+                        return BLM.Despair;
+                        
+                    if (gauge.ElementTimeRemaining >= 5000)
+                        return BLM.Fire4;
+                        
+                    return OriginalHook(BLM.Fire);
+                }
+                
+                return BLM.Blizzard3;
             }
 
             return actionID;
@@ -203,6 +225,26 @@ namespace XIVComboExpandedPlugin.Combos
 
                 if (level >= BLM.Levels.Freeze && gauge.InUmbralIce)
                     return BLM.Freeze;
+            }
+
+            return actionID;
+        }
+    }
+    
+    internal class BlackXenoglossyFeature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackXenoglossyFeature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Xenoglossy };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BLM.Xenoglossy)
+            {
+                var gauge = GetJobGauge<BLMGauge>();
+
+                if (level >= BLM.Levels.Paradox && gauge.InUmbralIce && gauge.IsParadoxActive && gauge.PolyglotStacks < 2)
+                    return OriginalHook(BLM.Blizzard);
             }
 
             return actionID;

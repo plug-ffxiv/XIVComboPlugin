@@ -126,7 +126,7 @@ namespace XIVComboExpandedPlugin.Combos
             {
                 var gauge = GetJobGauge<BLMGauge>();
                 
-                if (gauge.InUmbralceIce)
+                if (gauge.InUmbralIce)
                 {
                     if (gauge.UmbralHearts == 0)
                         return BLM.Blizzard4;

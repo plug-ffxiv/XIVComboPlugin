@@ -105,7 +105,7 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("(Between the) Ley Lines", "Change Ley Lines into BTL when Ley Lines is active.", BLM.JobID)]
         BlackLeyLinesFeature = 2503,
 
-        [CustomComboInfo("Fire 1 Feature", "Replace Fire I with Transpose when Firestarter is active in Umbral Ice at level 90, or Fire III when Firestarter is active in Umbral Ice or outside of Astral Fire.", BLM.JobID)]
+        [CustomComboInfo("Fire 1 Feature", "Replace Fire I with rotation", BLM.JobID)]
         BlackFireFeature = 2504,
 
         [CustomComboInfo("Blizzard 1/3 Feature", "Blizzard 1 becomes Blizzard 3 when out of Umbral Ice.", BLM.JobID)]
@@ -131,6 +131,9 @@ namespace XIVComboExpandedPlugin
         
         [CustomComboInfo("Flare one button rotation", "100 percent of the damage you know and love, now wrapped in just one convenient button.", BLM.JobID)]
         BlackFlareFeature = 2514,
+        
+        [CustomComboInfo("Xenoglossy/UI Paradox", "Replaces Xenoglossy with UI Paradox when available and appropriate", BLM.JobID)]
+        BlackXenoglossyFeature = 2515,
 
         #endregion
         // ====================================================================================

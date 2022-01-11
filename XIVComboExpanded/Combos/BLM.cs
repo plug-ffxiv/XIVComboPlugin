@@ -255,10 +255,7 @@ namespace XIVComboExpandedPlugin.Combos
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
             if (actionID == BLM.Fire4)
-            {
-                if (LocalPlayer?.CurrentMp < 800)
-                    return BLM.Manafont;
-                    
+            {                    
                 if (level >= BLM.Levels.Despair && LocalPlayer?.CurrentMp < 2400)
                     return BLM.Despair;
             }

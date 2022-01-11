@@ -118,46 +118,17 @@ namespace XIVComboExpandedPlugin.Combos
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFireFeature;
 
-        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Fire };
-
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
             if (actionID == BLM.Fire)
             {
                 var gauge = GetJobGauge<BLMGauge>();
-                
-                if (gauge.InUmbralIce)
-                {
-                    if (gauge.UmbralHearts == 0)
-                        return BLM.Blizzard4;
-                        
-                    if (gauge.IsParadoxActive)
-                        return OriginalHook(BLM.Blizzard);
-                        
-                    if (HasEffect(BLM.Buffs.Firestarter) && lastComboMove == BLM.Paradox)
-                        return BLM.Transpose;
-                        
+
+                if (level >= BLM.Levels.Fire3 && (!gauge.InAstralFire || HasEffect(BLM.Buffs.Firestarter)))
                     return BLM.Fire3;
-                }
-                
-                if (gauge.InAstralFire)
-                {
-                    if (gauge.AstralFireStacks < 3 && HasEffect(BLM.Buffs.Firestarter))
-                        return BLM.Fire3;
-                        
-                    if (LocalPlayer?.CurrentMp < 800)
-                        return BLM.Blizzard3;
-                        
-                    if (LocalPlayer?.CurrentMp < 2400)
-                        return BLM.Despair;
-                        
-                    if (gauge.ElementTimeRemaining >= 5000)
-                        return BLM.Fire4;
-                        
-                    return OriginalHook(BLM.Fire);
-                }
-                
-                return BLM.Blizzard3;
+
+                // Paradox
+                return OriginalHook(BLM.Fire);
             }
 
             return actionID;

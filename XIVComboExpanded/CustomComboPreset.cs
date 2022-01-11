@@ -105,7 +105,7 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("(Between the) Ley Lines", "Change Ley Lines into BTL when Ley Lines is active.", BLM.JobID)]
         BlackLeyLinesFeature = 2503,
 
-        [CustomComboInfo("Fire 1 Feature", "Replace Fire I with rotation", BLM.JobID)]
+        [CustomComboInfo("Fire 1 Feature", "Replace Fire I with Fire 3 when out of Astral Fire", BLM.JobID)]
         BlackFireFeature = 2504,
 
         [CustomComboInfo("Blizzard 1/3 Feature", "Blizzard 1 becomes Blizzard 3 when out of Umbral Ice.", BLM.JobID)]

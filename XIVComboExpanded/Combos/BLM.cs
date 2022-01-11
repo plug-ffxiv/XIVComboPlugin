@@ -117,6 +117,8 @@ namespace XIVComboExpandedPlugin.Combos
     internal class BlackFireFeature : CustomCombo
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFireFeature;
+        
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Fire };
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {

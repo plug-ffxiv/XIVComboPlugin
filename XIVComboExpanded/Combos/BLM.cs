@@ -145,6 +145,9 @@ namespace XIVComboExpandedPlugin.Combos
                     if (gauge.IsParadoxActive)
                         return OriginalHook(BLM.Blizzard);
                         
+                    if (gauge.UmbralHearts < 3 && gauge.ElementTimeRemaining > 4000)
+                        return BLM.Blizzard4;
+                        
                     return BLM.Fire3;
                 }
                 

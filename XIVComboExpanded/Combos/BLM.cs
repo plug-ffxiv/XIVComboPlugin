@@ -311,7 +311,7 @@ namespace XIVComboExpandedPlugin.Combos
                     if (LocalPlayer?.CurrentMp >= 2400)
                         return BLM.Fire4;
                         
-                    return BLM.Despair
+                    return BLM.Despair;
                 }
                 
                 if (gauge.InUmbralIce)

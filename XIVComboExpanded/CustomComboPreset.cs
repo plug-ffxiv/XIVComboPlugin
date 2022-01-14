@@ -120,8 +120,11 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Amplifier feature", "Changes Foul and Xenoglossy to Amplifier when no polyglot stacks are available.", BLM.JobID)]
         BlackAmplifierFeature = 2510,
         
-        [CustomComboInfo("Fire 4 feature", "Changes Fire IV into Despair when MP is below 2400", BLM.JobID)]
+        [CustomComboInfo("Fire 4 feature", "Changes Fire 4 into Thunder 3, Despair or Blizzard 4 as appropriate.", BLM.JobID)]
         BlackFire4Feature = 2511,
+        
+        [CustomComboInfo("Fire3 feature", "Changes Fire 3 into Blizzard 3 or Paradox as appropriate.", BLM.JobID)]
+        BlackFire3Feature = 2516,
         
         [CustomComboInfo("Thunder feature", "Changes all Thunder spells into Sharpcast if not under the effect of Sharpcast and Sharpcast is available.", BLM.JobID)]
         BlackThunderFeature = 2512,

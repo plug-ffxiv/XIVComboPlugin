@@ -303,7 +303,7 @@ namespace XIVComboExpandedPlugin.Combos
                 
                 var thunder3 = FindTargetEffect(BLM.Debuffs.Thunder3);
                 
-                if (((thunder3 is null) || thunder3?.RemainingTime < 3000) && (LocalPlayer?.CurrentMp >= 400 || HasEffect(BLM.Buffs.Thundercloud)))
+                if (((thunder3 is null) || thunder3?.RemainingTime < 3) && (LocalPlayer?.CurrentMp >= 400 || HasEffect(BLM.Buffs.Thundercloud)))
                     return BLM.Thunder3;                    
                 
                 if (gauge.InAstralFire)

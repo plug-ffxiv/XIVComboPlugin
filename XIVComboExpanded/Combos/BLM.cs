@@ -289,21 +289,21 @@ namespace XIVComboExpandedPlugin.Combos
         }
     }
     
-    internal class BlackFire4Feature : CustomCombo
+    internal class BlackBlizzard4Feature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFire4Feature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackBlizzard4Feature;
 
-        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Fire4 };
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Blizzard4 };
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == BLM.Fire4)
+            if (actionID == BLM.Blizzard4)
             {                    
                 var gauge = GetJobGauge<BLMGauge>();
                 
                 var thunder3 = FindTargetEffect(BLM.Debuffs.Thunder3);
                 
-                if (((thunder3 is null) || thunder3?.RemainingTime < 3) && (LocalPlayer?.CurrentMp >= 400 || HasEffect(BLM.Buffs.Thundercloud)))
+                if (((thunder3 is null) || thunder3?.RemainingTime < 3) && (LocalPlayer?.CurrentMp >= 400 || HasEffect(BLM.Buffs.Thundercloud)) && !(lastComboMove == BLM.Thunder3))
                     return BLM.Thunder3;                    
                 
                 if (gauge.InAstralFire)

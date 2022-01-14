@@ -130,12 +130,12 @@ namespace XIVComboExpandedPlugin.Combos
                 {
                     if (HasEffect(BLM.Buffs.Firestarter))
                         return BLM.Fire3;
+                    
+                    if (LocalPlayer?.CurrentMp < 1600)
+                        return BLM.Blizzard3;
                         
                     if (gauge.IsParadoxActive)
                         return OriginalHook(BLM.Fire);
-                
-                    if (LocalPlayer?.CurrentMp < 1600)
-                        return BLM.Blizzard3;
                         
                     return OriginalHook(BLM.Fire);
                 }

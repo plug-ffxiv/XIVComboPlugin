@@ -120,7 +120,7 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Amplifier feature", "Changes Foul and Xenoglossy to Amplifier when no polyglot stacks are available.", BLM.JobID)]
         BlackAmplifierFeature = 2510,
         
-        [CustomComboInfo("Blizzard 4 feature", "Changes Blizzard 4 into Thunder 3, Despair or Blizzard 4 as appropriate.", BLM.JobID)]
+        [CustomComboInfo("Blizzard 4 feature", "Changes Blizzard 4 into Thunder 3, Despair or Fire 4 as appropriate.", BLM.JobID)]
         BlackBlizzard4Feature = 2511,
         
         [CustomComboInfo("Fire3 feature", "Changes Fire 3 into Blizzard 3 or Paradox as appropriate.", BLM.JobID)]

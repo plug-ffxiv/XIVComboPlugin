@@ -113,6 +113,49 @@ namespace XIVComboExpandedPlugin.Combos
             return actionID;
         }
     }
+    
+    internal class BlackFire3Feature : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFire3Feature;
+
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Fire3 };
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == BLM.Fire3)
+            {
+                var gauge = GetJobGauge<BLMGauge>();
+                
+                if (gauge.InAstralFire)
+                {
+                    if (HasEffect(BLM.Buffs.Firestarter))
+                        return BLM.Fire3;
+                        
+                    if (gauge.IsParadoxActive)
+                        return OriginalHook(BLM.Fire);
+                
+                    if (LocalPlayer?.CurrentMp < 1600)
+                        return BLM.Blizzard3;
+                        
+                    return OriginalHook(BLM.Fire);
+                }
+                
+                if (gauge.InUmbralIce)
+                {
+                    if (gauge.IsParadoxActive)
+                        return OriginalHook(BLM.Blizzard);
+                        
+                    return BLM.Fire3;
+                }
+                
+                return BLM.Fire3;
+                
+            }
+
+            return actionID;
+        }
+    }
+
 
     internal class BlackFireFeature : CustomCombo
     {
@@ -256,8 +299,30 @@ namespace XIVComboExpandedPlugin.Combos
         {
             if (actionID == BLM.Fire4)
             {                    
-                if (level >= BLM.Levels.Despair && LocalPlayer?.CurrentMp < 2400)
-                    return BLM.Despair;
+                var gauge = GetJobGauge<BLMGauge>();
+                
+                var thunder3 = FindTargetEffect(BLM.Debuffs.Thunder3);
+                
+                if (((thunder3 is null) || thunder3?.RemainingTime < 3000) && (LocalPlayer?.CurrentMp >= 400 || HasEffect(BLM.Buffs.Thundercloud)))
+                    return BLM.Thunder3;                    
+                
+                if (gauge.InAstralFire)
+                {
+                    if (LocalPlayer?.CurrentMp >= 2400)
+                        return BLM.Fire4;
+                        
+                    return BLM.Despair
+                }
+                
+                if (gauge.InUmbralIce)
+                {
+                    if (gauge.UmbralHearts < 3)
+                        return BLM.Blizzard4;
+                        
+                    return BLM.Fire4;
+                }
+                
+                return BLM.Fire4;
             }
 
             return actionID;

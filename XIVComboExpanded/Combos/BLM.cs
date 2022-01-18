@@ -310,13 +310,8 @@ namespace XIVComboExpandedPlugin.Combos
                     return BLM.Thunder3;                    
                 
                 if (gauge.InAstralFire)
-                {
-                    if (LocalPlayer?.CurrentMp >= 2400)
-                        return BLM.Fire4;
-                        
-                    return BLM.Despair;
-                }
-                
+                    return BLM.Fire4;
+                    
                 if (gauge.InUmbralIce)
                 {
                     if (gauge.UmbralHearts < 3)

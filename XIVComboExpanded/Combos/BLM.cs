@@ -192,6 +192,8 @@ namespace XIVComboExpandedPlugin.Combos
                     
                     if (HasEffect(BLM.Buffs.Firestarter) && LocalPlayer?.CurrentMp < 10000)
                     {
+                        var thunder3 = FindTargetEffect(BLM.Debuffs.Thunder3);
+                    
                         if (((thunder3 is null) || thunder3?.RemainingTime < 4) && HasEffect(BLM.Buffs.Thundercloud) && !(lastComboMove == BLM.Thunder3))
                             return BLM.Thunder3;
                             

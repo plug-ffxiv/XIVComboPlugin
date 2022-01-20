@@ -152,7 +152,6 @@ namespace XIVComboExpandedPlugin.Combos
                 }
                 
                 return BLM.Fire3;
-                
             }
 
             return actionID;

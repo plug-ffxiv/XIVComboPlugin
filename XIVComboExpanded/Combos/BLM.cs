@@ -179,10 +179,10 @@ namespace XIVComboExpandedPlugin.Combos
                     if (lastComboMove == BLM.Despair || LocalPlayer?.CurrentMp < 800)
                         return BLM.Blizzard3;
                         
-                    if (gauge.IsParadoxActive)
-                        return OriginalHook(BLM.Fire);
+                    if (!gauge.IsParadoxActive || LocalPlayer?.CurrentMp < 2400)
+                        return BLM.Despair;
                         
-                    return BLM.Despair;
+                    return OriginalHook(BLM.Fire);
                 }
                 
                 if (gauge.InUmbralIce)

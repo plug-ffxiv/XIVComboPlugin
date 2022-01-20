@@ -172,8 +172,41 @@ namespace XIVComboExpandedPlugin.Combos
             {
                 var gauge = GetJobGauge<BLMGauge>();
 
-                if (level >= BLM.Levels.Fire3 && (!gauge.InAstralFire || HasEffect(BLM.Buffs.Firestarter)))
+                if (gauge.InAstralFire)
+                {
+                    if (gauge.AstralFireStacks < 3 && HasEffect(BLM.Buffs.Firestarter))
+                        return BLM.Fire3;
+                        
+                    if (lastComboMove == BLM.Despair || LocalPlayer?.CurrentMp < 800)
+                        return BLM.Blizzard3;
+                        
+                    if (gauge.IsParadoxActive)
+                        return OriginalHook(BLM.Fire);
+                        
+                    return BLM.Despair;
+                }
+                
+                if (gauge.InUmbralIce)
+                {
+                    if (gauge.IsParadoxActive)
+                        return OriginalHook(BLM.Blizzard);
+                    
+                    if (HasEffect(BLM.Buffs.Firestarter) && LocalPlayer?.CurrentMp < 10000)
+                    {
+                        if (((thunder3 is null) || thunder3?.RemainingTime < 4) && HasEffect(BLM.Buffs.Thundercloud) && !(lastComboMove == BLM.Thunder3))
+                            return BLM.Thunder3;
+                            
+                        if (gauge.PolyglotStacks > 0)
+                            return BLM.Xenoglossy;
+                            
+                        return BLM.Blizzard4;
+                    }
+                    
+                    if (HasEffect(BLM.Buffs.Firestarter))
+                        return BLM.Transpose;
+                        
                     return BLM.Fire3;
+                }
 
                 // Paradox
                 return OriginalHook(BLM.Fire);
@@ -306,7 +339,7 @@ namespace XIVComboExpandedPlugin.Combos
                 
                 var thunder3 = FindTargetEffect(BLM.Debuffs.Thunder3);
                 
-                if (((thunder3 is null) || thunder3?.RemainingTime < 3) && (LocalPlayer?.CurrentMp >= 400 || HasEffect(BLM.Buffs.Thundercloud)) && !(lastComboMove == BLM.Thunder3))
+                if (((thunder3 is null) || thunder3?.RemainingTime < 4) && (LocalPlayer?.CurrentMp >= 400 || HasEffect(BLM.Buffs.Thundercloud)) && !(lastComboMove == BLM.Thunder3))
                     return BLM.Thunder3;                    
                 
                 if (gauge.InAstralFire)

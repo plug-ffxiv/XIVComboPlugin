@@ -210,7 +210,7 @@ namespace XIVComboExpandedPlugin.Combos
                 }
 
                 // Paradox
-                return OriginalHook(BLM.Fire);
+                return BLM.Fire3;
             }
 
             return actionID;

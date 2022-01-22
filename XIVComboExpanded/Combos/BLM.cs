@@ -201,7 +201,10 @@ namespace XIVComboExpandedPlugin.Combos
                             return BLM.Xenoglossy;
                             
                         return BLM.Blizzard4;
-                    }
+                    }                    
+                    
+                    if (gauge.UmbralHearts < 3)
+                        return BLM.Blizzard4;
                     
                     if (HasEffect(BLM.Buffs.Firestarter))
                         return BLM.Transpose;
@@ -209,7 +212,9 @@ namespace XIVComboExpandedPlugin.Combos
                     return BLM.Fire3;
                 }
 
-                // Paradox
+                if (LocalPlayer?.CurrentMp < 2000)
+                    return BLM.Blizzard3;
+                    
                 return BLM.Fire3;
             }
 

@@ -190,6 +190,9 @@ namespace XIVComboExpandedPlugin.Combos
                     if (gauge.IsParadoxActive)
                         return OriginalHook(BLM.Blizzard);
                     
+                    if (gauge.UmbralHearts < 3)
+                        return BLM.Blizzard4;
+                    
                     if (HasEffect(BLM.Buffs.Firestarter) && LocalPlayer?.CurrentMp < 10000)
                     {
                         var thunder3 = FindTargetEffect(BLM.Debuffs.Thunder3);
@@ -201,10 +204,7 @@ namespace XIVComboExpandedPlugin.Combos
                             return BLM.Xenoglossy;
                             
                         return BLM.Blizzard4;
-                    }                    
-                    
-                    if (gauge.UmbralHearts < 3)
-                        return BLM.Blizzard4;
+                    }
                     
                     if (HasEffect(BLM.Buffs.Firestarter))
                         return BLM.Transpose;

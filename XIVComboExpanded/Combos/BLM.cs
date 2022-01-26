@@ -206,9 +206,6 @@ namespace XIVComboExpandedPlugin.Combos
                         return BLM.Blizzard4;
                     }
                     
-                    if (LocalPlayer?.CurrentMp < 10000)
-                        return BLM.Blizzard4;
-                    
                     if (HasEffect(BLM.Buffs.Firestarter))
                         return BLM.Transpose;
                         

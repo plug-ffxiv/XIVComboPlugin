@@ -418,3 +418,4 @@ namespace XIVComboExpandedPlugin.Combos
             return actionID;
         }
     }
+}

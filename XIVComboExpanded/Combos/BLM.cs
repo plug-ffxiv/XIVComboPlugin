@@ -362,7 +362,7 @@ namespace XIVComboExpandedPlugin.Combos
                 if (((thunder3 is null) || (thunder3?.RemainingTime < 4)) && (HasEffect(BLM.Sharpcast)))
                     return BLM.Thunder3;
                     
-                if ((cooldownData.IsCooldown && (cooldownData.CooldownElapsed < 30))
+                if (cooldownData.IsCooldown && (cooldownData.CooldownElapsed < 30))
                     return BLM.Thunder3;
                     
                 return BLM.Sharpcast;

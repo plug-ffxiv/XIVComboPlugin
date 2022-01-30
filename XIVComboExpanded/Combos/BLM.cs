@@ -192,22 +192,6 @@ namespace XIVComboExpandedPlugin.Combos
                     
                     if (gauge.UmbralHearts < 3)
                         return BLM.Blizzard4;
-                    
-                    if (HasEffect(BLM.Buffs.Firestarter) && LocalPlayer?.CurrentMp < 10000)
-                    {
-                        var thunder3 = FindTargetEffect(BLM.Debuffs.Thunder3);
-                    
-                        if (((thunder3 is null) || thunder3?.RemainingTime < 4) && HasEffect(BLM.Buffs.Thundercloud) && !(lastComboMove == BLM.Thunder3))
-                            return BLM.Thunder3;
-                            
-                        if (gauge.PolyglotStacks > 0)
-                            return BLM.Xenoglossy;
-                            
-                        return BLM.Blizzard4;
-                    }
-                    
-                    if (HasEffect(BLM.Buffs.Firestarter))
-                        return BLM.Transpose;
                         
                     return BLM.Fire3;
                 }
@@ -342,12 +326,7 @@ namespace XIVComboExpandedPlugin.Combos
             if (actionID == BLM.Blizzard4)
             {                    
                 var gauge = GetJobGauge<BLMGauge>();
-                
-                var thunder3 = FindTargetEffect(BLM.Debuffs.Thunder3);
-                
-                if (((thunder3 is null) || thunder3?.RemainingTime < 4) && (LocalPlayer?.CurrentMp >= 400 || HasEffect(BLM.Buffs.Thundercloud)) && !(lastComboMove == BLM.Thunder3))
-                    return BLM.Thunder3;                    
-                
+                                                
                 if (gauge.InAstralFire)
                     return BLM.Fire4;
                     
@@ -366,31 +345,30 @@ namespace XIVComboExpandedPlugin.Combos
         }
     }
     
-    internal class BlackThunderFeature : CustomCombo
+    internal class BlackSharpcastFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackThunderFeature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackBlizzard4Feature;
 
-        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Thunder, BLM.Thunder2, BLM.Thunder3, BLM.Thunder4 };
+        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Sharpcast };
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == BLM.Thunder || actionID == BLM.Thunder2 || actionID == BLM.Thunder3 || actionID == BLM.Thunder4)
-            {
-                if (!HasEffect(BLM.Buffs.Sharpcast) && !(lastComboMove == BLM.Thunder3 || lastComboMove == BLM.Thunder4) && level >= BLM.Levels.Sharpcast)
-                {
-                    var cooldownData = GetCooldown(BLM.Sharpcast);
-
-                    if (!cooldownData.IsCooldown)
-                        return BLM.Sharpcast;
-                    
-                    if (level >= BLM.Levels.EnhancedSharpcast2 && cooldownData.CooldownElapsed >= 30)
-                        return BLM.Sharpcast;
-                }
+            if (actionID == BLM.Sharpcast)
+            {          
+                var thunder3 = FindTargetEffect(BLM.Debuffs.Thunder3);
+                
+                var cooldownData = GetCooldown(BLM.Sharpcast);
+                
+                if (((thunder3 is null) || thunder3?.RemainingTime < 4) && (HasEffect(BLM.Sharpcast) || (cooldownData.IsCooldown && cooldownData.CooldownElapsed < 30))
+                    return BLM.Thunder3;                    
+                
+                return BLM.Sharpcast;
             }
 
             return actionID;
         }
     }
+
     
     internal class BlackBlizzard3Feature : CustomCombo
     {
@@ -440,65 +418,3 @@ namespace XIVComboExpandedPlugin.Combos
             return actionID;
         }
     }
-    
-    internal class BlackFlareFeature : CustomCombo
-    {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackFlareFeature;
-
-        protected internal override uint[] ActionIDs { get; } = new[] { BLM.Flare };
-
-        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-        {
-            if (actionID == BLM.Flare)
-            {
-                var gauge = GetJobGauge<BLMGauge>();
-                
-                var ampCooldown = GetCooldown(BLM.Amplifier);
-                
-                var manafontCooldown = GetCooldown(BLM.Manafont);
-                
-                var sharpCooldown = GetCooldown(BLM.Sharpcast);
-                
-                if (gauge.InUmbralIce)
-                {
-                    if (lastComboMove == BLM.HighBlizzard2 && !HasEffect(BLM.Buffs.Sharpcast) && (!sharpCooldown.IsCooldown || sharpCooldown.CooldownElapsed >= 30))
-                        return BLM.Sharpcast;
-                        
-                    if (HasEffect(BLM.Buffs.Sharpcast))
-                        return BLM.Thunder4;
-                    
-                    if (gauge.UmbralHearts < 3)
-                        return BLM.Freeze;
-                        
-                    return BLM.HighFire2;
-                }
-                
-                if (gauge.InAstralFire)
-                {
-                    if (gauge.PolyglotStacks == 2)
-                        return BLM.Foul;
-                        
-                    if (!ampCooldown.IsCooldown)
-                        return BLM.Amplifier;
-                    
-                    if (LocalPlayer?.CurrentMp < 800)
-                    {
-                        if (!manafontCooldown.IsCooldown)
-                            return BLM.Manafont;
-                            
-                        return BLM.HighBlizzard2;
-                    }
-                    
-                    if (gauge.UmbralHearts > 1)
-                        return BLM.HighFire2;
-                    
-                    return BLM.Flare;
-                }
-            
-                return BLM.HighBlizzard2;
-            }
-            
-            return actionID;
-        }
-    }
-}

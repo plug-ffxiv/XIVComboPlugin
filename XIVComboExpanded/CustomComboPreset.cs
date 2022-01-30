@@ -126,15 +126,12 @@ namespace XIVComboExpandedPlugin
         [CustomComboInfo("Fire3 feature", "Changes Fire 3 into Blizzard 3 or Paradox as appropriate.", BLM.JobID)]
         BlackFire3Feature = 2516,
         
-        [CustomComboInfo("Thunder feature", "Changes all Thunder spells into Sharpcast if not under the effect of Sharpcast and Sharpcast is available.", BLM.JobID)]
-        BlackThunderFeature = 2512,
+        [CustomComboInfo("Sharpcast feature", "Changes Sharpcast to T3 when appropriate.", BLM.JobID)]
+        BlackSharpcastFeature = 2512,
         
         [CustomComboInfo("Blizzard 3 one button rotation", "95 percent of the damage you know and love, now wrapped in just one convenient button: just add Thunder!.", BLM.JobID)]
         BlackBlizzard3Feature = 2513,
-        
-        [CustomComboInfo("Flare one button rotation", "100 percent of the damage you know and love, now wrapped in just one convenient button.", BLM.JobID)]
-        BlackFlareFeature = 2514,
-        
+                
         [CustomComboInfo("Xenoglossy/UI Paradox", "Replaces Xenoglossy with UI Paradox when available and appropriate", BLM.JobID)]
         BlackXenoglossyFeature = 2515,
 

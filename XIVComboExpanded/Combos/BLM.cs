@@ -347,7 +347,7 @@ namespace XIVComboExpandedPlugin.Combos
     
     internal class BlackSharpcastFeature : CustomCombo
     {
-        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackBlizzard4Feature;
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackSharpcastFeature;
 
         protected internal override uint[] ActionIDs { get; } = new[] { BLM.Sharpcast };
 
